@@ -1,3 +1,5 @@
+# This code is coming from ellisdg/3DUnetCNN project
+# https://github.com/ellisdg/3DUnetCNN
 from functools import partial
 
 from keras import backend as K
