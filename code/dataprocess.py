@@ -109,4 +109,49 @@ def read_label(contour,label_path, crop_size=None):
 
 
     return  label
+def remove_minor_cc(vol_data, rej_ratio, rename_map=[0,200,500,600]):
+    """Remove small connected components refer to rejection ratio"""
 
+    rem_vol = copy.deepcopy(vol_data)
+    class_n = len(rename_map)
+    # retrieve all classes
+    for c in range(1, class_n):
+        print ('processing class %d...' % c)
+
+
+        class_idx = (vol_data==rename_map[c])*1
+        class_vol = np.sum(class_idx)
+        labeled_cc, num_cc = measurements.label(class_idx)
+        # retrieve all connected components in this class
+        for cc in range(1, num_cc+1):
+            single_cc = ((labeled_cc==cc)*1)
+            single_vol = np.sum(single_cc)
+            # remove if too small
+            if single_vol / (class_vol*1.0) < rej_ratio:
+                # print('remove small connected from class:%d' % c)
+                rem_vol[labeled_cc==cc] = 0
+       
+    return rem_vol
+
+def fillHole(im_in,class_level=[0,200,500,600]):
+
+    fill_volume = copy.deepcopy(im_in)
+
+    h, w, z = im_in.shape
+
+    for slice_num in range(z):
+        img = copy.deepcopy(im_in[:,:,slice_num])
+        for level in range(1,len(class_level)):
+        # Floodfill from point (0, 0)
+            img_idx = (im_in[:,:,slice_num]!=class_level[level])*1
+            img_num = np.sum(img_idx)
+            labeled_cc, num_cc = measurements.label(img_idx)
+            for cc in range(1, num_cc + 1):
+                single_cc = ((labeled_cc == cc) * 1)
+                single_vol = np.sum(single_cc)
+                # remove if too small
+                if single_vol / (img_num * 1.0) < 0.0005:
+                    img[labeled_cc == cc] = class_level[level]
+        fill_volume[:,:,slice_num] = img
+
+    return fill_volume
