@@ -11,7 +11,6 @@ from unet import unet
 import shutil
 import scipy
 from keras import backend as K
-from histmatch import *
 from dataprocess import *
 
 # Testing the 5 models.
