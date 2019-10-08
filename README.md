@@ -20,7 +20,7 @@ The data mapping is utilized histogram match method, which is an easy and effici
 The LGE CMR data are resized to the shape of the b-SSFP CMR. Then, the 2D images are obtained along the short axis. The target histogram for each b-SSFP image is calculating from the corresponding LGE image. An example of the resized LGE image, b-SSFP image, and fake LGE image is shown below. a-c are corresponding to the short axis LGE, b-SSFP, and fake LGE generating from a and b; d-f are corresponding to the long axis LGE, bSSFP, and fake LGE. 
 
 <p align="center">
-    <img src="images/Fig2.prepross.png" width="400" height="200">
+    <img src="images/Fig2.prepross.png" width="400" height="250">
 </p>
 
 In order to keep the same input to the model, we resize all images into (256, 256). After data analysis, we center crop the resized images into (144,144) to filter the unrelated background. The output of the model will do the inverse operation to keep the data consistency. Moreover, the evaluation is performed on the 3D volumes. 
@@ -69,7 +69,7 @@ The score of metrics during the testing stage is shown in the following chart. T
 their orders are consistent across the four metrics.  
 
 <p align="center">
-    <img src="images/Fig4.test_metrics.png" width="800" height="400">
+    <img src="images/Fig4.test_metrics.png" width="800" height="500">
 </p>
 
 Two random selected segmentation examples, patient 6 and patient 24, are shown below. The green, red and yellow contours represent LVM, RV and LV, respectively. The three columns of each patient are from three different slices in order to demonstrate a comprehensive result of the proposed model. 
