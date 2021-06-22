@@ -83,11 +83,12 @@ Two random selected segmentation examples, patient 6 and patient 24, are shown b
 Please consider citing this project in your publications if it helps your research. The following is a BibTeX reference. The BibTeX entry  requires the `url` LaTeX package.
 
 ```latex
-@article{Liu2019AnAC,
-  title={An Automatic Cardiac Segmentation Framework based on Multi-sequence MR Image},
-  author={Yashu Liu and Wei Wang and Kuanquan Wang and Chengqin Ye and Gongning Luo},
-  journal={ArXiv},
+@inproceedings{liu2019automatic,
+  title={An automatic cardiac segmentation framework based on multi-sequence MR image},
+  author={Liu, Yashu and Wang, Wei and Wang, Kuanquan and Ye, Chengqin and Luo, Gongning},
+  booktitle={International Workshop on Statistical Atlases and Computational Models of the Heart},
+  pages={220--227},
   year={2019},
-  volume={abs/1909.05488}
+  organization={Springer}
 }
 ```
